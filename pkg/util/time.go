@@ -1,6 +1,9 @@
 package util
 
-import "time"
+import (
+	"strconv"
+	"time"
+)
 
 const DefaultTimeFormat = "2006-01-02 15:04:05"
 
@@ -71,4 +74,27 @@ func GetLastTimeSting(year, month, day int, format string) string {
 	}
 
 	return LastTime.Format(format)
+}
+
+// GetNowTimeUnix 【mod】 "s" , "ms" , "ns" "ws"
+func GetNowTimeUnix(mod string) (UnixStr string, UnixInt int64) {
+	switch mod {
+	case "s":
+		// 秒级别
+		UnixInt = time.Now().Unix()
+	case "ms":
+		// 毫秒级别
+		UnixInt = time.Now().UnixMilli()
+	case "ns":
+		// 纳秒级别
+		UnixInt = time.Now().UnixNano()
+	case "ws":
+		// 微秒级别
+		UnixInt = time.Now().UnixMicro()
+	default:
+		// 默认是S级别
+		UnixInt = time.Now().Unix()
+	}
+	UnixStr = strconv.FormatInt(UnixInt, 10)
+	return
 }

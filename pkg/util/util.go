@@ -1,22 +1,18 @@
 package util
 
 import (
-	"context"
-	"errors"
 	"regexp"
 	"strings"
-	"yqsl.com/go/seed/conf"
-	"yqsl.com/go/seed/pkg/i18n"
 )
 
-func CheckIDs(con conf.App, ctx context.Context, ids []uint64) (err error) {
-	if len(ids) <= 0 {
-		err = errors.New(i18n.T(ctx, "ids不能为空"))
-	} else if len(ids) > int(con.MaxBatch) {
-		err = errors.New(i18n.Tf(ctx, "ids的数量不能超过最大值%d", con.MaxBatch))
-	}
-	return
-}
+//func CheckIDs(con conf.App, ctx context.Context, ids []uint64) (err error) {
+//	if len(ids) <= 0 {
+//		err = errors.New(i18n.T(ctx, "ids不能为空"))
+//	} else if len(ids) > int(con.MaxBatch) {
+//		err = errors.New(i18n.Tf(ctx, "ids的数量不能超过最大值%d", con.MaxBatch))
+//	}
+//	return
+//}
 
 // FirstLower 字符串首字母小写
 func FirstLower(s string) string {
@@ -26,8 +22,8 @@ func FirstLower(s string) string {
 	return strings.ToLower(s[:1]) + s[1:]
 }
 
-//CamelString 蛇形转驼峰
-//xx_yy to XxYx  xx_y_y to XxYY
+// CamelString 蛇形转驼峰
+// xx_yy to XxYx  xx_y_y to XxYY
 func CamelString(s string) string {
 	data := make([]byte, 0, len(s))
 	j := false

@@ -14,6 +14,7 @@ import (
 //	return
 //}
 
+// ParseXml 将数据解析为xml
 func ParseXml(body any) (output []byte, err error) {
 	output, err = xml.MarshalIndent(body, "", "")
 	if err != nil {
