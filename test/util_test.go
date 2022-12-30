@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/chenluzhong150394/gotools/pkg/util"
 	"github.com/chenluzhong150394/gotools/pkg/wechat"
+	"net/url"
 	"testing"
 )
 
@@ -138,5 +139,14 @@ func TestTuWen2(t *testing.T) {
 	xmlStr := wechat.TransferWxXmlString(&tuwen)
 
 	fmt.Println(xmlStr)
+
+}
+
+func TestUrlParse(t *testing.T) {
+
+	r, err := url.Parse("http://www.baidu.com/search?a=1")
+	if err != nil {
+		fmt.Println(r.Path)
+	}
 
 }
